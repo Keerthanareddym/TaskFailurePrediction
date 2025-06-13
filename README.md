@@ -111,8 +111,15 @@ python app.py
 | Decision Tree     | 0.94     | 0.91      | 0.93   | 0.93     |
 | Voting Classifier | 0.95     | 0.91      | 0.94   | 0.93     |
 
-![Accuracy Graph](![accuracy_comparison](https://github.com/user-attachments/assets/e865e60e-d11d-48f4-921e-bfcd762544dc)
-)
+<img src="https://github.com/user-attachments/assets/e865e60e-d11d-48f4-921e-bfcd762544dc" alt="Accuracy Graph" width="300"/>
+<img src="https://github.com/user-attachments/assets/7244b4d8-e290-47ce-8828-832577d53a67" alt="Precision Graph" width="300"/>
+<img src="https://github.com/user-attachments/assets/241e062b-1540-4dc9-8dbc-74012a7d0ab3" alt="F1 Score Comparison" width="300"/>
+<img src="https://github.com/user-attachments/assets/6e76f929-14f6-4896-aa94-f875a3fcc888" alt="Recall Comparison" width="300"/>
+<img src="https://github.com/user-attachments/assets/b632eee1-b39c-4fba-9774-25663de2ba7c" alt="Decision Tree Graph" width="300"/>
+<img src="https://github.com/user-attachments/assets/d3d640b9-f2f6-48f7-86ae-725f06ff8ecf" alt="Random Forest Graph" width="300"/>
+<img src="https://github.com/user-attachments/assets/7c474cc7-21f8-44cf-91ff-5fdcedac2c6c" alt="CNN BiLSTM Graph" width="300"/>
+<img src="https://github.com/user-attachments/assets/8350e823-220f-4761-b5d9-1dab6fb638cd" alt="Voting Classifier Graph" width="300"/>
+
 
 
 ---
