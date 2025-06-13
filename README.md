@@ -30,11 +30,11 @@ Delete the entire "Project Structure" section that looks broken.
 Copy and paste the code below to replace it.
 ✅ Copy this corrected block:
 
-Markdown
+
 
 ## 🏗️ Project Structure
 
-.
+```
 ├── model.py         # Handles data preprocessing, training, and evaluation
 ├── app.py           # Flask web app (signup, predict, SQLite integration)
 ├── dataset/         # Contains the dataset file(s) used for training
@@ -43,5 +43,88 @@ Markdown
 ├── static/          # Static files (CSS, JS, images - if any)
 └── README.md        # This documentation file
 
+```
+---
+## ⚙️ Installation and Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/<Keerthanareddym>/<TaskFailurePrediction>.git
+cd <TaskFailurePrediction>
+```
+
+### 2: (Optional) Create a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate      # For Linux/macOS
+venv\Scripts\activate         # For Windows
+```
+### 3. Install Required Packages
+
+```bash
+pip install -r requirements.txt
+pip install flask scikit-learn pandas numpy tensorflow imbalanced-learn joblib
+```
+--- 
+
+## 🛠️ How to Run the Project
+
+### Step 1: Train the Model
+```bash
+python model.py
+```
+-Loads and cleans dataset
+-Trains ML models (RandomForest, DecisionTree, VotingClassifier)
+-Trains CNN+BiLSTM deep learning model
+-Saves models to models/ folder
+
+### Step 2: Launch Web Application
+```bash
+python app.py
+```
+-Open in browser: http://127.0.0.1:5000/
+-Sign up / Log in
+-Enter task parameters to get failure prediction result
 
 ---
+## 🌐 Web Interface Features
+
+--User Authentication (Sign up & Login)
+--Input Features for Prediction:
+    Time
+    Instance Events Type
+    Scheduling Class
+    Priority
+--AI-based task failure prediction
+--Prediction result page with confidence output
+--Navigation to performance graphs and model metrics
+
+---
+
+## 📊 Model Performance Comparison
+| Model             | Accuracy | Precision | Recall | F1 Score |
+| ----------------- | -------- | --------- | ------ | -------- |
+| CNN + BiLSTM      | 0.97     | 0.92      | 0.98   | 0.95     |
+| Random Forest     | 0.95     | 0.91      | 0.94   | 0.93     |
+| Decision Tree     | 0.94     | 0.91      | 0.93   | 0.93     |
+| Voting Classifier | 0.95     | 0.91      | 0.94   | 0.93     |
+
+![Accuracy Graph](![accuracy_comparison](https://github.com/user-attachments/assets/e865e60e-d11d-48f4-921e-bfcd762544dc)
+)
+
+
+---
+## 📈 Future Enhancements
+
+Integrate Transformer-based models like BERT/GPT/ViT
+Real-time streaming prediction (using Kafka, etc.)
+Deploy to cloud using Docker, Kubernetes
+Visual dashboards using SHAP/LIME for interpretability
+Enhance scalability using distributed training
+
+---
+## 📎 References
+Google Cluster Trace Dataset
+IEEE Research Articles on CNN, BiLSTM, and Task Failure Prediction
