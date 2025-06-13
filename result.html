@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      overflow-x: hidden;
+      padding: 40px 10px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes floatingStars {
+      0% { transform: translateY(0px); opacity: 0.8; }
+      50% { transform: translateY(-20px); opacity: 1; }
+      100% { transform: translateY(0px); opacity: 0.8; }
+    }
+
+    .stars {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: floatingStars 3s infinite ease-in-out alternate;
+    }
+    .stars:nth-child(2) { top: 10%; left: 15%; animation-delay: 0.5s; }
+    .stars:nth-child(3) { top: 20%; left: 70%; animation-delay: 1s; }
+    .stars:nth-child(4) { top: 50%; left: 40%; animation-delay: 1.5s; }
+    .stars:nth-child(5) { top: 80%; left: 30%; animation-delay: 2s; }
+    .stars:nth-child(6) { top: 90%; left: 80%; animation-delay: 2.5s; }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 30px 20px;
+      max-width: 1200px;
+      width: 100%;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #f4c542;
+    }
+
+    .output-section {
+      background: #ffffff10;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      color: #f4c542;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .graph-btn {
+      padding: 12px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      box-shadow: 0 0 12px rgba(79, 172, 254, 0.75), 0 0 30px rgba(0, 242, 254, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .graph-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 1), 0 0 40px rgba(79, 172, 254, 0.8);
+    }
+
+    .graph-btn.ml {
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+      box-shadow: 0 0 12px rgba(255, 153, 102, 0.75), 0 0 30px rgba(255, 94, 98, 0.5);
+    }
+
+    .graph-btn.dl {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      box-shadow: 0 0 12px rgba(161, 140, 209, 0.75), 0 0 30px rgba(251, 194, 235, 0.5);
+    }
+
+    .graph-btn.comp {
+      background: linear-gradient(135deg, #f7971e, #ffd200);
+      box-shadow: 0 0 12px rgba(247, 151, 30, 0.75), 0 0 30px rgba(255, 210, 0, 0.5);
+    }
+
+
+    .graph-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 20px rgba(255, 154, 158, 1);
+    }
+
+    
+
+    .space-y-4 img {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div><div class="stars"></div><div class="stars"></div>
+  <div class="stars"></div><div class="stars"></div><div class="stars"></div>
+
+  <div class="container">
+    <h1>🎯 Prediction Result</h1>
+    <div class="output-section">
+      <strong>Result:</strong> {{ output }}
+    </div>
+
+    {% if output %}
+      {% if graph_images %}
+        <!-- Graph Group Buttons -->
+        <div class="d-flex flex-wrap justify-content-center mt-4 mb-4">
+          <button onclick="showGroup('mlgraphs')" class="graph-btn ml">🧠 Machine Learning Graphs</button>
+          <button onclick="showGroup('dlgraphs')" class="graph-btn dl">🧬 Deep Learning Graphs</button>
+          <button onclick="showGroup('comparison')" class="graph-btn comp">📊 Performance Graphs</button>
+        </div>
+        
+
+        <!-- Machine Learning Graphs -->
+        <div id="mlgraphs" class="hidden space-y-4">
+          <img src="{{ url_for('static', filename='decisiontreegraph.png') }}" class="mx-auto rounded-xl shadow-lg">
+          <img src="{{ url_for('static', filename='randomforestgraph.png') }}" class="mx-auto rounded-xl shadow-lg">
+          <img src="{{ url_for('static', filename='votingclassifiergraph.png') }}" class="mx-auto rounded-xl shadow-lg">
+        </div>
+
+        <!-- Deep Learning Graph -->
+        <div id="dlgraphs" class="hidden space-y-4">
+          <img src="{{ url_for('static', filename='cnnbilstmgraph.png') }}" class="mx-auto rounded-xl shadow-lg">
+        </div>
+
+        <!-- Comparison Graphs -->
+        <div id="comparison" class="hidden space-y-4">
+          <img src="{{ url_for('static', filename='accuracy_comparison.png') }}" class="mx-auto rounded-xl shadow-lg">
+          <img src="{{ url_for('static', filename='precision_comparison.png') }}" class="mx-auto rounded-xl shadow-lg">
+          <img src="{{ url_for('static', filename='recall_comparison.png') }}" class="mx-auto rounded-xl shadow-lg">
+          <img src="{{ url_for('static', filename='f1_score_comparison.png') }}" class="mx-auto rounded-xl shadow-lg">
+        </div>
+
+        <!-- JS to Toggle Groups -->
+        <script>
+          function showGroup(groupId) {
+            const groups = ['mlgraphs', 'dlgraphs', 'comparison'];
+            groups.forEach(id => {
+              document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(groupId).classList.remove('hidden');
+          }
+        </script>
+      {% endif %}
+    {% else %}
+      <p class="result-text">No prediction was made.</p>
+    {% endif %}
+
+    <a href="/predict"><button class="btn">🔄 Try Again</button></a>
+  </div>
+</body>
+</html>
+
+
